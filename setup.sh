@@ -55,7 +55,12 @@ else
     else
         echo -e "${YELLOW}⚠ Need sudo to set directory ownership to UID/GID 1000${NC}"
         sudo chown -R 1000:1000 data config logs modules systems
-        echo -e "${GREEN}✓ Permissions set${NC}"
+        if [ $? -eq 0 ]; then
+            echo -e "${GREEN}✓ Permissions set${NC}"
+        else
+            echo -e "${RED}Failed to set permissions${NC}"
+            exit 1
+        fi
     fi
 fi
 
