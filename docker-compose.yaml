@@ -1,0 +1,26 @@
+services:
+  foundryvtt:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ${CONTAINER_NAME:-foundryvtt}
+    hostname: ${HOSTNAME:-foundryvtt}
+    restart: ${RESTART_POLICY:-unless-stopped}
+    ports:
+      - "${FOUNDRY_PORT:-30000}:${FOUNDRY_INTERNAL_PORT:-30000}"
+    volumes:
+      - ${DATA_PATH:-./data}:/data
+      - ${CONFIG_PATH:-./config}:/config
+      - ${LOGS_PATH:-./logs}:/logs
+      - ${MODULES_PATH:-./modules}:/data/Data/modules
+      - ${SYSTEMS_PATH:-./systems}:/data/Data/systems
+    environment:
+      - FOUNDRY_DATA_PATH=/data
+      - FOUNDRY_ARGS=${FOUNDRY_ARGS:-}
+      - TZ=${TZ:-UTC}
+    networks:
+      - foundry-net
+
+networks:
+  foundry-net:
+    driver: bridge

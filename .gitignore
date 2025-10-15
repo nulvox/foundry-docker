@@ -1,0 +1,28 @@
+# Environment configuration
+.env
+
+# Foundry VTT application files (user must download)
+foundryvtt/
+FoundryVTT-*.zip
+
+# Persistent data directories
+data/
+config/
+logs/
+modules/
+systems/
+
+# Backup files
+*.tar.gz
+*.zip
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
